@@ -52,14 +52,6 @@ jobs:
         docker push grg0teachorly/docker-graphql:$NEW_VERSION
         docker push grg0teachorly/docker-graphql:latest
         echo "Image pushed to DHub >>>>>>>>> Whaleá <<<<<<<<<"
-        echo "                             "
-        echo "        .                    "
-        echo "       ":"                   "
-        echo "     ___:____     |"\/"|     "
-        echo "   ,'        `.    \  /      "
-        echo "  |  O        \___/  |       "
-        echo " ^~^~^~^~^~^~^~^~^~^~^~^~    "
-        echo " ^~^~^~^~^~^~^~^~^~^~^~^~    "
 
       
 #     - name: Build the Docker image
