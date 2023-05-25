@@ -26,6 +26,18 @@ jobs:
         echo "Iniciando login"
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         echo "Fin de login"
+        
+    - name: Build docker image
+      run: |
+        echo "Creando build"
+        docker build -t grg0teachorly/docker-graphql:1.0.1 .
+        echo "Build creado"
+    
+    - name: Push image to DockerHub
+      run: |
+        echo "Pushing imagen a DH"
+        docker push grg0teachorly/docker-graphql:1.0.1
+        echo "Image pushed to DHub Whaleá"
 
       
 #     - name: Build the Docker image
