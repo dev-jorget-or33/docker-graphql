@@ -30,26 +30,36 @@ jobs:
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-        NEW_VERSION: ${{steps.version.outputs.version}}
         
       run: |
-        echo "<<<<<<<<<<<<<<<<<<< VERSION @ $NEW_VERSION >>>>>>>>>>>>>>>>>"
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         echo "Fin de login"
         
-#     - name: Build docker image
-#       run: |
-#         echo "Creando build"
-#         docker build -t grg0teachorly/docker-graphql:1.0.1 .
-#         docker build -t grg0teachorly/docker-graphql:latest .
-#         echo "Build creado"
+    - name: Build docker image
+      env:
+        NEW_VERSION: ${{steps.version.outputs.version}}
+      run: |
+        echo "Creando build"
+        docker build -t grg0teachorly/docker-graphql:$NEW_VERSION .
+        docker build -t grg0teachorly/docker-graphql:latest .
+        echo "Build creado"
     
-#     - name: Push image to DockerHub
-#       run: |
-#         echo "Pushing imagen a DH"
-#         docker push grg0teachorly/docker-graphql:1.0.1
-#         docker push grg0teachorly/docker-graphql:latest
-#         echo "Image pushed to DHub Whaleá"
+    - name: Push image to DockerHub
+      env:
+        NEW_VERSION: ${{steps.version.outputs.version}}
+      run: |
+        echo "Pushing imagen a DH"
+        docker push grg0teachorly/docker-graphql:$NEW_VERSION
+        docker push grg0teachorly/docker-graphql:latest
+        echo "Image pushed to DHub >>>>>>>>> Whaleá <<<<<<<<<"
+        echo "
+                      .
+                     ":"
+                   ___:____     |"\/"|
+                 ,'        `.    \  /
+                 |  O        \___/  |
+               ~^~^~^~^~^~^~^~^~^~^~^~^~  
+             "
 
 
       
