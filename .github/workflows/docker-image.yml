@@ -31,12 +31,14 @@ jobs:
       run: |
         echo "Creando build"
         docker build -t grg0teachorly/docker-graphql:1.0.1 .
+        docker build -t grg0teachorly/docker-graphql:latest .
         echo "Build creado"
     
     - name: Push image to DockerHub
       run: |
         echo "Pushing imagen a DH"
         docker push grg0teachorly/docker-graphql:1.0.1
+        docker push grg0teachorly/docker-graphql:latest
         echo "Image pushed to DHub Whaleá"
 
       
