@@ -13,45 +13,57 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
+      - name: Printing logs
+        run: |
+          echo "Ballena"
+          echo "Balennina"
+          echo "                             "
+          echo "        .                    "
+          echo "       ":"                   "
+          echo "     ___:____     |"\/"|     "
+          echo "   ,'        `.    \  /      "
+          echo "  |  O        \___/  |       "
+          echo " ^~^~^~^~^~^~^~^~^~^~^~^~    "
+          echo " ^~^~^~^~^~^~^~^~^~^~^~^~    "
+#     - name: Checkout code
+#       uses: actions/checkout@v3
+#       with:
+#         fetch-depth: 0
     
-    - name: Git Semantic Version
-      uses: PaulHatch/semantic-version@v4.0.3
-      with: 
-        major_pattern: "major:"
-        minor_pattern: "feat:"
-        format: "${major}.${minor}.${patch}-prerelease${increment}"
-      id: version
+#     - name: Git Semantic Version
+#       uses: PaulHatch/semantic-version@v4.0.3
+#       with: 
+#         major_pattern: "major:"
+#         minor_pattern: "feat:"
+#         format: "${major}.${minor}.${patch}-prerelease${increment}"
+#       id: version
         
-    - name: Docker login
-      env:
-        DOCKER_USER: ${{secrets.DOCKER_USER}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+#     - name: Docker login
+#       env:
+#         DOCKER_USER: ${{secrets.DOCKER_USER}}
+#         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         
-      run: |
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-        echo "Fin de login"
+#       run: |
+#         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+#         echo "Fin de login"
         
-    - name: Build docker image
-      env:
-        NEW_VERSION: ${{steps.version.outputs.version}}
-      run: |
-        echo "Creando build"
-        docker build -t grg0teachorly/docker-graphql:$NEW_VERSION .
-        docker build -t grg0teachorly/docker-graphql:latest .
-        echo "Build creado"
+#     - name: Build docker image
+#       env:
+#         NEW_VERSION: ${{steps.version.outputs.version}}
+#       run: |
+#         echo "Creando build"
+#         docker build -t grg0teachorly/docker-graphql:$NEW_VERSION .
+#         docker build -t grg0teachorly/docker-graphql:latest .
+#         echo "Build creado"
     
-    - name: Push image to DockerHub
-      env:
-        NEW_VERSION: ${{steps.version.outputs.version}}
-      run: |
-        echo "Pushing imagen a DH"
-        docker push grg0teachorly/docker-graphql:$NEW_VERSION
-        docker push grg0teachorly/docker-graphql:latest
-        echo "Image pushed to DHub >>>>>>>>> Whaleá <<<<<<<<<"
+#     - name: Push image to DockerHub
+#       env:
+#         NEW_VERSION: ${{steps.version.outputs.version}}
+#       run: |
+#         echo "Pushing imagen a DH"
+#         docker push grg0teachorly/docker-graphql:$NEW_VERSION
+#         docker push grg0teachorly/docker-graphql:latest
+#         echo "Image pushed to DHub >>>>>>>>> Whaleá <<<<<<<<<"
 
       
 #     - name: Build the Docker image
